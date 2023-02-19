@@ -1,7 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
+import { addToFavAction, removeFromFavAction } from "../redux/actions";
+import { Star, StarFill } from "react-bootstrap-icons";
 
 const Album = ({ data }) => {
+  const favourites = useSelector((state) => state.favourite.content);
+  const dispatch = useDispatch();
+  const isFav = favourites.includes(data.title_short);
+
   console.log(data);
   return (
     <>
@@ -19,6 +25,25 @@ const Album = ({ data }) => {
               <p className="mb-0 text-start text-truncate text-light">
                 {data.artist.name}
               </p>
+              {isFav ? (
+                <StarFill
+                  color="gold"
+                  size={16}
+                  className="mr-2 my-auto"
+                  onClick={() =>
+                    dispatch(removeFromFavAction(data.title_short))
+                  }
+                />
+              ) : (
+                <>
+                  <Star
+                    color="gold"
+                    size={16}
+                    className="mr-2 my-auto"
+                    onClick={() => dispatch(addToFavAction(data.title_short))}
+                  />
+                </>
+              )}
             </div>
           </div>
         </div>
