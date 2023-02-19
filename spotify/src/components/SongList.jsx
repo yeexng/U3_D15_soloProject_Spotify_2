@@ -36,8 +36,8 @@ const SongList = () => {
 
             <Row>
               {results ? (
-                results.map((albumData) => (
-                  <Album key={albumData.id} data={albumData} />
+                results.map((albumData, i) => (
+                  <Album key={albumData.id} data={albumData} i={i} />
                 ))
               ) : (
                 <h1>Loading...</h1>
