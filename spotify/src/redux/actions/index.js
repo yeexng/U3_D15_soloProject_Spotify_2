@@ -1,6 +1,7 @@
 export const GET_SONGS = "GET_SONGS";
 export const ADD_TO_FAV = "ADD_TO_FAV";
 export const REMOVE_FROM_FAV = "REMOVE_FROM_FAV";
+export const PLAY_SONG = "PLAY_SONG";
 
 export const getSongsAsyncAction = (query) => {
   return async (dispatch, getState) => {
@@ -28,9 +29,16 @@ export const addToFavAction = (song) => {
     payload: song,
   };
 };
-export const removeFromFavAction = (song) => {
+export const removeFromFavAction = (id) => {
   return {
     type: REMOVE_FROM_FAV,
+    payload: id,
+  };
+};
+
+export const musicPlayerAction = (song) => {
+  return {
+    type: PLAY_SONG,
     payload: song,
   };
 };
