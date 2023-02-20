@@ -1,7 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "react-bootstrap";
-import { addToFavAction, removeFromFavAction } from "../redux/actions";
-import { Star, StarFill } from "react-bootstrap-icons";
+import {
+  addToFavAction,
+  removeFromFavAction,
+  musicPlayerAction,
+} from "../redux/actions";
+import { FcLikePlaceholder } from "react-icons/fc";
+import { FcLike } from "react-icons/fc";
+import "../css/index.css";
 
 const Album = ({ data }) => {
   const favourites = useSelector((state) => state.favourite.content);
@@ -13,7 +19,12 @@ const Album = ({ data }) => {
     <>
       <Col xs={12} md={6} lg={2}>
         <div className="mb-3 pt-3 pb-4">
-          <div className="mx-3">
+          <div
+            className="mx-3"
+            onClick={() => {
+              dispatch(musicPlayerAction(data));
+            }}
+          >
             <img src={data.album.cover} alt="" className="mb-2 album-image" />
             <div className="text-truncate">
               <p className="mb-1 text-start text-truncate text-light">
@@ -26,7 +37,7 @@ const Album = ({ data }) => {
                 {data.artist.name}
               </p>
               {isFav ? (
-                <StarFill
+                <FcLike
                   color="gold"
                   size={16}
                   className="mr-2 my-auto"
@@ -36,7 +47,7 @@ const Album = ({ data }) => {
                 />
               ) : (
                 <>
-                  <Star
+                  <FcLikePlaceholder
                     color="gold"
                     size={16}
                     className="mr-2 my-auto"

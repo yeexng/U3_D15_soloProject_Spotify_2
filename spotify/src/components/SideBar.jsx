@@ -2,11 +2,12 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { FiHome } from "react-icons/fi";
 import { VscLibrary } from "react-icons/vsc";
 import { BsFillPlusSquareFill } from "react-icons/bs";
-import { GiHeartOrgan } from "react-icons/gi";
-import { CiBeerMugFull } from "react-icons/ci";
+import { GiSelfLove } from "react-icons/gi";
+import { SiMusicbrainz } from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromFavAction } from "../redux/actions";
-import { StarFill } from "react-bootstrap-icons";
+import { FcLike } from "react-icons/fc";
+import "../css/index.css";
 
 const SideBar = () => {
   const favourites = useSelector((state) => state.favourite.content);
@@ -15,40 +16,39 @@ const SideBar = () => {
 
   return (
     <>
-      <div className="text-white d-flex flex-column align-items-start mx-2 left-navbar">
+      <div className="text-white d-flex flex-column align-items-start mx-4 ">
         <div className="mb-3 mt-3 d-flex align-items-center" id="main-logo">
-          <CiBeerMugFull></CiBeerMugFull>
-          <p className="mb-0" id="upper-left-corner-text">
+          <SiMusicbrainz />
+          <p className="mb-0" id="logo">
             Samify
           </p>
         </div>
         <div className="mb-3 d-flex align-items-center">
-          <FiHome></FiHome>
-          <p className="mb-0" id="upper-left-corner-text">
+          <FiHome className="mr-" />
+          <p className="mb-0" id="side-bar-text">
             Home
           </p>
         </div>
         <div className="mb-3 d-flex align-items-center w-100">
           <VscLibrary></VscLibrary>
-          <p className="mb-0" id="upper-left-corner-text">
+          <p className="mb-0" id="side-bar-text">
             Your Library
           </p>
         </div>
         <div className="mb-3 d-flex align-items-center w-100">
           <BsFillPlusSquareFill></BsFillPlusSquareFill>
-          <p className="mb-0" id="upper-left-corner-text">
+          <p className="mb-0" id="side-bar-text">
             Create Playlist
           </p>
         </div>
         <div className="mb-3 d-flex align-items-center w-100">
-          <GiHeartOrgan></GiHeartOrgan>
-          <p className="mb-0" id="upper-left-corner-text">
+          <GiSelfLove />
+          <p className="mb-0" id="side-bar-text">
             Liked Songs
           </p>
         </div>
-        <hr className="bg-light"></hr>
         <div className="mb-3 d-flex align-items-center w-100">
-          <p className="mb-0" id="upper-left-corner-text">
+          <p className="mb-0" id="favourite">
             Added to Favourite
           </p>
         </div>
@@ -56,7 +56,7 @@ const SideBar = () => {
           {favourites.map((fav, i) => (
             <>
               <ListGroupItem key={i}>
-                <StarFill
+                <FcLike
                   className="mr-2"
                   onClick={() => dispatch(removeFromFavAction(fav))}
                 />
