@@ -53,17 +53,19 @@ const SideBar = () => {
           </p>
         </div>
         <div>
-          {favourites.map((fav, i) => (
-            <>
-              <ListGroupItem key={i}>
-                <FcLike
-                  className="mr-2"
-                  onClick={() => dispatch(removeFromFavAction(fav))}
-                />
-                <span className="text-light">{fav}</span>
-              </ListGroupItem>
-            </>
-          ))}
+          {favourites
+            ? favourites.map((fav, id) => (
+                <>
+                  <ListGroupItem key={id}>
+                    <FcLike
+                      className="mr-2"
+                      onClick={() => dispatch(removeFromFavAction(fav.id))}
+                    />
+                    <span className="text-light">{fav}</span>
+                  </ListGroupItem>
+                </>
+              ))
+            : ""}
         </div>
       </div>
     </>

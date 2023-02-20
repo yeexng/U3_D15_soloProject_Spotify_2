@@ -38,17 +38,13 @@ const Album = ({ data }) => {
               </p>
               {isFav ? (
                 <FcLike
-                  color="gold"
                   size={16}
                   className="mr-2 my-auto"
-                  onClick={() =>
-                    dispatch(removeFromFavAction(data.title_short))
-                  }
+                  onClick={() => dispatch(removeFromFavAction(data.id))}
                 />
               ) : (
                 <>
                   <FcLikePlaceholder
-                    color="gold"
                     size={16}
                     className="mr-2 my-auto"
                     onClick={() => dispatch(addToFavAction(data.title_short))}
